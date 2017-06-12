@@ -6,6 +6,7 @@ import {FormGroup, FormBuilder, Validators,} from '@angular/forms';
 import {ExchangeStudent} from './exchangestudent.model'
 
 import {AppModule} from '../../app.module';
+import {ExchangestudentService} from "./exchangestudent.service";
 
 
 @Component({
@@ -19,6 +20,9 @@ export class ExchangestudentComponent implements OnInit {
   buddy:ExchangeStudent;
   id: number;
   buddyForm:FormGroup;
+  constructor(private _formBuilder: FormBuilder, private es:ExchangestudentService) {
+
+  }
 
 /*
     buddyForm = new FormGroup({
@@ -38,9 +42,11 @@ export class ExchangestudentComponent implements OnInit {
   });*/
 
   onSubmit(){
-
-
     console.log(this.buddyForm.value);
+    console.log(this.buddyForm.getRawValue())
+    this.es.addExchangeStudent(this.buddyForm.value);
+
+
     this.dummy= new ExchangeStudent();
     this.dummy.name=this.buddyForm.get('name').value;
     /*this.dummy.name=this.userForm.get("_name").value;
@@ -61,9 +67,7 @@ export class ExchangestudentComponent implements OnInit {
     this.save(this.dummy);
 
   }
-  constructor(private _formBuilder: FormBuilder) {
 
-  }
 
   ngOnInit() {
 
@@ -71,9 +75,9 @@ export class ExchangestudentComponent implements OnInit {
     this.buddyForm= this._formBuilder.group({
      name: [null, [Validators.required, Validators.minLength(2)]],
      surname: [null, [Validators.required, Validators.minLength(2)]],
-     age: [null,[Validators.required, Validators.pattern('/^[1-9]{2}$/')]],
+     age: [null,[Validators.required]],
      preferredGender: [null, Validators.required],
-     emailAddress: [null, [Validators.required,Validators.email]],
+     emailAddress: [null, [Validators.required]],
      studySubject: [null, Validators.required],
      hostUniversity: [null, Validators.required],
      firstLanguage: [null, Validators.required],

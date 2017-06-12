@@ -15,7 +15,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
         <label for="password">Password</label>
         <input id="password" type="password" formControlName="password" class="form-control">
       </div>
-      <button type="submit" [disabled]="!signupForm.valid" class="btn btn-primary">Sign Up</button>
+      <button type="submit" [disabled]="!signinForm.valid" class="btn btn-primary">Sign In</button>
     </form>
   `,
   styles: []
@@ -28,6 +28,7 @@ export class SigninComponent implements OnInit {
   }
   onSignin(){
     this.authService.signinUser(this.signinForm.value);
+
   }
 
   ngOnInit() {    this.signinForm=this.fb.group({

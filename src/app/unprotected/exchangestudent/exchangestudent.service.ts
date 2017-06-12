@@ -9,7 +9,7 @@ import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} f
 
 @Injectable()
 export class ExchangestudentService {
-  private exchangeStudents: ExchangeStudent[];
+  private exchangeStudents: ExchangeStudent[]=null;
   items: FirebaseListObservable<ExchangeStudent[]>;
   exchangeStudentsChanged = new EventEmitter<ExchangeStudent[]>();
 
@@ -19,6 +19,7 @@ export class ExchangestudentService {
 
   addExchangeStudent(exchangeStudent: ExchangeStudent) {
     this.exchangeStudents.push(exchangeStudent);
+    this.storeData();
   }
 
   getExchangeStudent(id: number) {

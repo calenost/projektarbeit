@@ -10,7 +10,7 @@
 
           <md-input-container class="md-block">
             <label>First Name</label>
-            <input mdInput class="form-control" class="form-control" formControlName="name" required>
+            <input mdInput class="form-control" formControlName="name" required>
             <md-hint *ngIf="localForm.controls['name'].hasError('required')&&localForm.controls['name'].touched"
                      class="alert alert-danger">Please enter a name
             </md-hint>
@@ -18,7 +18,7 @@
 
           <md-input-container class="md-block">
             <label>Last Name</label>
-            <input mdInput class="form-control" class="form-control" formControlName="surname" required>
+            <input mdInput class="form-control" formControlName="surname" required>
             <md-hint *ngIf="localForm.controls['surname'].hasError('required')&&localForm.controls['surname'].touched"
                      class="alert alert-danger">Last name is required
             </md-hint>
