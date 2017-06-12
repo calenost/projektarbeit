@@ -15,7 +15,7 @@ export class ExchangestudentListComponent implements OnInit {
 
   ngOnInit() {
     this.exchangeStudents = this.exchangeStudentService.getExchangeStudents();
-    this.exchangeStudentService.exchangeStudentsChanged.subscribe((exchangeStudents: ExchangeStudent[]) => this.exchangeStudents = exchangeStudents)
+    this.exchangeStudentService.exchangeStudentsChanged.subscribe((exchangeStudents: ExchangeStudent[]) => this.exchangeStudents = exchangeStudents);
   }
 
 }

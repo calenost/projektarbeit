@@ -45,13 +45,13 @@ import {AngularFireAuthModule} from "angularfire2/auth";
 
 @NgModule({
   declarations: [
-    ExchangestudentComponent,
     LocalComponent,
     AppComponent,
     HeaderComponent,
     AdminComponent,
     SigninComponent,
     SignupComponent,
+    ExchangestudentComponent,
     ExchangestudentListComponent,
     ExchangestudentItemComponent
   ],

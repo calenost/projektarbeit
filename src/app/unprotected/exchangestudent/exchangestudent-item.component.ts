@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {ExchangeStudent} from "./exchangestudent.model";
 
 @Component({
@@ -7,7 +7,7 @@ import {ExchangeStudent} from "./exchangestudent.model";
   styles: []
 })
 export class ExchangestudentItemComponent implements OnInit {
-@Input() exchangeStudent:ExchangeStudent;
+@Input() exchangeStudent:ExchangeStudent=null;
   constructor() { }
 
   ngOnInit() {
