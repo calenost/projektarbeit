@@ -3,7 +3,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators,} from '@angular/forms';
-import {ExchangeStudent} from './exchangestudent'
+import {ExchangeStudent} from './exchangestudent.model'
 
 import {AppModule} from '../app.module';
 
@@ -37,12 +37,12 @@ export class ExchangestudentComponent implements OnInit {
     exchangeProgram: new FormControl()
   });*/
 
-  onSubmit(value : any){
-    console.log(value);
+  onSubmit(){
+
 
     console.log(this.buddyForm.value);
     this.dummy= new ExchangeStudent();
-    this.dummy.name=value._name;
+    this.dummy.name=this.buddyForm.get('name').value;
     /*this.dummy.name=this.userForm.get("_name").value;
      this.dummy.surname=this.userForm.get("_surname").value;
      this.dummy.age=this.userForm.get("_age").value;
@@ -71,21 +71,24 @@ export class ExchangestudentComponent implements OnInit {
     this.buddyForm= this._formBuilder.group({
      name: [null, [Validators.required, Validators.minLength(2)]],
      surname: [null, [Validators.required, Validators.minLength(2)]],
-     age: [null,[Validators.required, Validators.minLength(2)]],
+     age: [null,[Validators.required, Validators.pattern('/^[1-9]{2}$/')]],
      preferredGender: [null, Validators.required],
-     emailAddress: [null, [Validators.required, Validators.pattern('^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')]],
+     emailAddress: [null, [Validators.required,Validators.email]],
      studySubject: [null, Validators.required],
      hostUniversity: [null, Validators.required],
      firstLanguage: [null, Validators.required],
      secondLanguage: [null, Validators.required],
      duration: [],
      comments: [],
-     gender: [],
+     gender: [null,Validators.required],
      exchangeProgram: []});
 
-
-
-
+    this.buddyForm.valueChanges.subscribe(
+      (data:any)=>console.log(data)
+    );
+    this.buddyForm.statusChanges.subscribe(
+      (data:any)=>console.log(data)
+    );
   }
 
 

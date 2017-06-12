@@ -2,19 +2,32 @@
  * Created by Felix on 19.05.2017.
  */
 export class ExchangeStudent {
+  get country(): string {
+    return this._country;
+  }
+
+  set country(value: string) {
+    this._country = value;
+  }
+
   private _id: number;
+
   private _name: string;
   private _surname: string;
   private _age: number;
-  private _preferredGender: string;
+  private _gender?: string;
   private _emailAddress: string;
   private _studySubject: string;
   private _hostUniversity: string;
+  private _country: string;
+
   private _firstLanguage: string;
   private _secondLanguage: string;
+
   private _duration?: number; // Semesteranzahl in Dortmund
   private _comments?: string;
-  private _gender?: string;
+
+  private _preferredGender: string;
   private _exchangeProgram?: string;
 
   get id(): number {

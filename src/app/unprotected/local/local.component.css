@@ -1,0 +1,15 @@
+.mat-card {
+  padding: 20px;
+  width:50%;
+  margin:20px;
+}
+.div-left {
+  float:left;
+}
+.div-below{
+
+  float:bottom;
+}
+.div-right{
+  float:right;
+}

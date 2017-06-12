@@ -154,8 +154,9 @@ export class LocalStudent {
   set comments(value: string) {
     this._comments = value;
   }
-  //personal data
   private _id: number;
+  //personal data
+
   private _name: string;
   private _surname: string;
   private _age: number;
