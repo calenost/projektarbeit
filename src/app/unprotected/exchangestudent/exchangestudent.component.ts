@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators,} from '@angular/forms';
 import {ExchangeStudent} from './exchangestudent.model'
 
-import {AppModule} from '../app.module';
+import {AppModule} from '../../app.module';
 
 
 @Component({

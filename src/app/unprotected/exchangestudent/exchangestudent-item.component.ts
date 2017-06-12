@@ -1,0 +1,16 @@
+import {Component, Input, OnInit} from '@angular/core';
+import {ExchangeStudent} from "./exchangestudent.model";
+
+@Component({
+  selector: 'app-exchangestudent-item',
+  templateUrl: './exchangestudent-item.component.html',
+  styles: []
+})
+export class ExchangestudentItemComponent implements OnInit {
+@Input() exchangeStudent:ExchangeStudent;
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}

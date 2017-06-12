@@ -1,0 +1,18 @@
+<header class="mat-app-background">
+  <md-toolbar class="mat-toolbar">
+
+    <ul class="nav nav-tabs">
+
+      <li role="presentation" routerLinkActive="active"><a [routerLink]="['/exchange']"> Exchange Student</a></li>
+      <li role="presentation" routerLinkActive="active"><a [routerLink]="['/local']">Local Student</a></li>
+
+    </ul>
+    <ul class="nav nav-tabs right">
+      <li><a style="cursor: pointer" routerLink="['signin']" *ngIf="!isAuthenticated">Login</a></li>
+      <li><a style="cursor: pointer"(click)="onLogout()" *ngIf="isAuthenticated">Logout</a></li>
+    </ul>
+
+  </md-toolbar>
+
+</header>
+
