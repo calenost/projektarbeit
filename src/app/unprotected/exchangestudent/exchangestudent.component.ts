@@ -43,10 +43,9 @@ export class ExchangestudentComponent implements OnInit {
 
   onSubmit(){
     console.log(this.buddyForm.value);
-    console.log(this.buddyForm.getRawValue())
-    this.es.addExchangeStudent(this.buddyForm.value);
-
-
+    try {
+      this.es.addExchangeStudent(this.buddyForm.value);
+    }catch(ex){ console.log(ex.toString())}
     this.dummy= new ExchangeStudent();
     this.dummy.name=this.buddyForm.get('name').value;
     /*this.dummy.name=this.userForm.get("_name").value;
@@ -87,12 +86,12 @@ export class ExchangestudentComponent implements OnInit {
      gender: [null,Validators.required],
      exchangeProgram: []});
 
-    this.buddyForm.valueChanges.subscribe(
+  /*  this.buddyForm.valueChanges.subscribe(
       (data:any)=>console.log(data)
     );
     this.buddyForm.statusChanges.subscribe(
       (data:any)=>console.log(data)
-    );
+    );*/
   }
 
 
