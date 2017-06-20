@@ -16,7 +16,7 @@ export class HttpService {
   {
     const body= JSON.stringify(user);
     const headers=new Headers({'Content-Type': 'application/json'});
-    this.http.post('URL', body, [headers: headers,]).catch(response: Response).throw;
+    this.http.post('URL', body, [headers: headers,]).
   }
   getData() {
     return this.http.get('url').map(response: Response) =>{

@@ -31,7 +31,9 @@ import {ExchangestudentItemComponent} from "./unprotected/exchangestudent/exchan
 import {environment} from "../environments/environment";
 import {AngularFireDatabaseModule} from "angularfire2/database";
 import {AngularFireAuthModule} from "angularfire2/auth";
-
+import { LocalListComponent } from './unprotected/local/local-list.component';
+import {LocalStudentService} from "./unprotected/local/localstudent.service";
+//import {hammerjs} from 'https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js';
 /*
  export const firebaseconfig = {     // Initialize Firebase
  apiKey: "AIzaSyDE4OQX1XtiFcZI6qHRfiaQjw0XMHtGbus",
@@ -53,7 +55,8 @@ import {AngularFireAuthModule} from "angularfire2/auth";
     SignupComponent,
     ExchangestudentComponent,
     ExchangestudentListComponent,
-    ExchangestudentItemComponent
+    ExchangestudentItemComponent,
+    LocalListComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +88,7 @@ import {AngularFireAuthModule} from "angularfire2/auth";
     MdCardModule,
     MdInputModule
   ],
-  providers: [AuthService, AdminGuard, ExchangestudentService],
+  providers: [AuthService, AdminGuard, ExchangestudentService, LocalStudentService],
 
   bootstrap: [AppComponent]
 })

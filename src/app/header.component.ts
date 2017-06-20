@@ -8,11 +8,12 @@ import {AuthService} from "./auth.service";
 })
 export class HeaderComponent implements OnInit {
  isAuthenticated=false;
+ currentUser;
   constructor(private authService:AuthService) {
     this.authService.isAuthenticated().subscribe(
-      authStatus=> this.isAuthenticated=authStatus
-    );
+      authStatus=> this.isAuthenticated=authStatus)
   }
+
 onLogout()
 {
   this.authService.logout();

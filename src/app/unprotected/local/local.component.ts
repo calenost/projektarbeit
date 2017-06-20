@@ -3,7 +3,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators, Form,} from '@angular/forms';
-import {LocalStudent} from './local.model.';
+import {LocalStudent} from './local.model';
 @Component(
 {
   selector: 'app-localstudent',

@@ -7,7 +7,7 @@ import {ExchangeStudent} from "./exchangestudent.model";
   styles: []
 })
 export class ExchangestudentItemComponent implements OnInit {
-@Input() exchangeStudent:ExchangeStudent=null;
+@Input() exchangeStudent:ExchangeStudent;
   constructor() { }
 
   ngOnInit() {

@@ -42,28 +42,17 @@ export class ExchangestudentComponent implements OnInit {
   });*/
 
   onSubmit(){
+    const length=this.es.getExchangeStudents().length;
+
+    this.id=this.es.getExchangeStudent(length-1).id;
     console.log(this.buddyForm.value);
+    const exchangeStudent:ExchangeStudent=this.buddyForm.value;
+    exchangeStudent.id=this.id;
     try {
-      this.es.addExchangeStudent(this.buddyForm.value);
+      this.es.addExchangeStudent(exchangeStudent);
     }catch(ex){ console.log(ex.toString())}
-    this.dummy= new ExchangeStudent();
-    this.dummy.name=this.buddyForm.get('name').value;
-    /*this.dummy.name=this.userForm.get("_name").value;
-     this.dummy.surname=this.userForm.get("_surname").value;
-     this.dummy.age=this.userForm.get("_age").value;
-     this.dummy.comments=this.userForm.get("_comments").value;
-     this.dummy.duration=this.userForm.get("_duration").value;
-     this.dummy.emailAddress=this.userForm.get("_emailAddress").value;
-     this.dummy.exchangeProgram=this.userForm.get("_exchangeProgram").value;
-     this.dummy.firstLanguage=this.userForm.get("_firstLanguage").value;
-     this.dummy.gender=this.userForm.get("_gender").value;
-     this.dummy.hostUniversity=this.userForm.get("_hostUniversity").value;
-     this.dummy.preferredGender=this.userForm.get("_preferredGender").value;
-     this.dummy.secondLanguage=this.userForm.get("_secondLanguage").value;
-     this.dummy.studySubject=this.userForm.get("_studySubject").value;*/
-    this.dummy.id=this.id;
     this.id++;
-    this.save(this.dummy);
+
 
   }
 
@@ -85,35 +74,6 @@ export class ExchangestudentComponent implements OnInit {
      comments: [],
      gender: [null,Validators.required],
      exchangeProgram: []});
-
-  /*  this.buddyForm.valueChanges.subscribe(
-      (data:any)=>console.log(data)
-    );
-    this.buddyForm.statusChanges.subscribe(
-      (data:any)=>console.log(data)
-    );*/
-  }
-
-
-
-  save(stud:ExchangeStudent) {
-    /*this.item.set({
-      name: stud.name,
-      surname: stud.surname,
-      age:stud.age,
-      email: stud.emailAddress,
-      gender:stud.gender,
-      preferredGender:stud.preferredGender,
-      studySubject:stud.studySubject,
-      hostUniversity:stud.hostUniversity,
-      firstLanguage:stud.firstLanguage,
-      secondLanguage:stud.secondLanguage,
-      duration:stud.duration,
-      comments:stud.comments,
-      exchangeProgram:stud.exchangeProgram
-
-
-    )}*/
   }
 
 }

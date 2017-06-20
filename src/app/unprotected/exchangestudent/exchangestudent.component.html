@@ -118,18 +118,20 @@
 
   <form formGroup="userForm" #userForm="ngForm" novalidate (ngSubmit)="onSubmit(userForm)">
 </div>-->
+<div class="row">
+  <md-toolbar class="mat-toolbar">Request a Buddy</md-toolbar>
+</div>
 
-<md-toolbar class="mat-toolbar">Request a Buddy</md-toolbar>
+<form [formGroup]="buddyForm" novalidate (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-md-6">
+      <md-card class="mat-card">
+        <md-card-header>
+          <md-card-title>Personal information</md-card-title>
+        </md-card-header>
+        <md-card-content>
+          <div class="form-group">
 
-
-  <form [formGroup]="buddyForm" novalidate (ngSubmit)="onSubmit()">
-    <md-card class="mat-card">
-      <md-card-header>
-        <md-card-title>Personal information</md-card-title>
-      </md-card-header>
-      <md-card-content>
-        <div class="form-group">
-          <div>
             <md-input-container class="md-block">
               <label>First Name</label>
               <input mdInput class="form-control" formControlName="name" required>
@@ -140,9 +142,10 @@
 
             <md-input-container class="md-block">
               <label>Last Name</label>
-              <input mdInput class="form-control"  formControlName="surname" required>
-              <md-hint *ngIf="buddyForm.controls['surname'].hasError('required')&&buddyForm.controls['surname'].touched"
-                       class="alert alert-danger">Last name is required
+              <input mdInput class="form-control" formControlName="surname" required>
+              <md-hint
+                *ngIf="buddyForm.controls['surname'].hasError('required')&&buddyForm.controls['surname'].touched"
+                class="alert alert-danger">Last name is required
               </md-hint>
             </md-input-container>
 
@@ -164,16 +167,15 @@
                        class="alert alert-danger">Please enter a valid age
               </md-hint>
             </md-input-container>
-          </div>
-          <div class="div-left">
+
+
             <md-radio-group formControlName="gender">
               <label> What's your gender?</label><br/>
               <md-radio-button value="male" checked="true"> Male</md-radio-button>
               <md-radio-button value="female"> Female</md-radio-button>
               <md-radio-button value="other"> Other</md-radio-button>
             </md-radio-group>
-          </div>
-          <div class="div-right">
+
 
             <md-radio-group formControlName="preferredGender">
               <label> What gender should your Mentor have?</label><br/>
@@ -184,114 +186,111 @@
 
               <md-radio-button value="abstain"> Abstain</md-radio-button>
             </md-radio-group>
+
+
+            <br/>
+            <br/>
+            <br/>
           </div>
-        </div>
-        <br/>
-        <br/>
-        <br/>
-      </md-card-content>
-    </md-card>
-    <md-card class="mat-card">
-      <md-card-header>
-        <md-card-title>Information on your studies
-        </md-card-title>
-      </md-card-header>
-      <md-card-content>
-        <div class="form-group">
-          <md-input-container>
-            <label>Study Subject</label>
-            <input mdInput class="form-control" formControlName="studySubject" required>
-            <md-hint
-              *ngIf="buddyForm.controls['studySubject'].hasError('required')&&buddyForm.controls['studySubject'].touched"
-              class="alert alert-danger">Please enter a studySubject
-            </md-hint>
-          </md-input-container>
-          <br/>
-          <md-radio-group formControlName="hostUniversity">
-            <label>At which university are you going to study?</label><br/>
-            <md-radio-button value="FH" checked="true"> Fachhochschule Dortmund (University of Applied
-              Sciences)
-            </md-radio-button>
-            <br>
-            <md-radio-button value="TU"> Technische Universität Dortmund (Technical University)</md-radio-button>
-            <br>
-            <md-radio-button value="none"> None of the above</md-radio-button>
-            <br>
-          </md-radio-group>
-          <div class="div-left">
+        </md-card-content>
+      </md-card>
+    </div>
+    <div class="col-md-6">
+      <md-card class="mat-card">
+        <md-card-header>
+          <md-card-title>Information on your studies
+          </md-card-title>
+        </md-card-header>
+        <md-card-content>
+          <div class="form-group">
             <md-input-container>
-              <label>Mother tongue (French, Spanish, etc.)</label>
-              <input mdInput class="form-control" formControlName="firstLanguage" required>
+              <label>Study Subject</label>
+              <input mdInput class="form-control" formControlName="studySubject" required>
               <md-hint
-                *ngIf="buddyForm.controls['firstLanguage'].hasError('required')&&buddyForm.controls['firstLanguage'].touched"
-                class="alert alert-danger">Please enter your primary language
+                *ngIf="buddyForm.controls['studySubject'].hasError('required')&&buddyForm.controls['studySubject'].touched"
+                class="alert alert-danger">Please enter a studySubject
               </md-hint>
             </md-input-container>
-          </div>
-          <div class="div-right">
-            <md-input-container>
-              <label>Second language</label>
-              <input mdInput class="form-control" formControlName="secondLanguage" required>
-              <md-hint
-                *ngIf="buddyForm.controls['secondLanguage'].hasError('required')&&buddyForm.controls['secondLanguage'].touched"
-                class="alert alert-danger">Please enter your second language
-              </md-hint>
-            </md-input-container>
+            <br/>
+            <md-radio-group formControlName="hostUniversity">
+              <label>At which university are you going to study?</label><br/>
+              <md-radio-button value="FH" checked="true"> Fachhochschule Dortmund (University of Applied
+                Sciences)
+              </md-radio-button>
+              <br>
+              <md-radio-button value="TU"> Technische Universität Dortmund (Technical University)</md-radio-button>
+              <br>
+              <md-radio-button value="none"> None of the above</md-radio-button>
+              <br>
+            </md-radio-group>
+
+              <md-input-container>
+                <label>Mother tongue (French, Spanish, etc.)</label>
+                <input mdInput class="form-control" formControlName="firstLanguage" required>
+                <md-hint
+                  *ngIf="buddyForm.controls['firstLanguage'].hasError('required')&&buddyForm.controls['firstLanguage'].touched"
+                  class="alert alert-danger">Please enter your primary language
+                </md-hint>
+              </md-input-container>
+
+              <md-input-container>
+                <label>Second language</label>
+                <input mdInput class="form-control" formControlName="secondLanguage" required>
+                <md-hint
+                  *ngIf="buddyForm.controls['secondLanguage'].hasError('required')&&buddyForm.controls['secondLanguage'].touched"
+                  class="alert alert-danger">Please enter your second language
+                </md-hint>
+              </md-input-container>
+
+
           </div>
 
-        </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-      </md-card-content>
+        </md-card-content>
 
-    </md-card>
-    <md-card>
-      <md-card-header>
-        <md-card-title>Other information
-        </md-card-title>
-      </md-card-header>
-      <md-card-content>
-        <div class="from-group">
-          <div class="div-left">
-            <md-input-container>
-              <label>How many semesters are you planning to stay in Dortmund?</label>
-              <input mdInput class="form-control" formControlName="duration">
-            </md-input-container>
-          </div>
-          <div class="div-right">
+      </md-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <md-card>
+        <md-card-header>
+          <md-card-title>Other information
+          </md-card-title>
+        </md-card-header>
+        <md-card-content>
+          <div class="from-group">
+
+              <md-input-container>
+                <label>How many semesters are you planning to stay in Dortmund?</label>
+                <input mdInput class="form-control" formControlName="duration">
+              </md-input-container>
+            <br/>
             <md-input-container>
               <label>Do you have any comments?</label>
               <input mdInput class="form-control" formControlName="comments">
             </md-input-container>
+            <br/>
+            <md-input-container>
+              <label>What is your Exchange Program?</label>
+              <input mdInput class="form-control" formControlName="exchangeProgram" required>
+              <md-hint
+                *ngIf="buddyForm.controls['exchangeProgram'].hasError('required')&&buddyForm.controls['exchangeProgram'].touched"
+                class="alert alert-danger">Please enter your Exchange Program
+              </md-hint>
+            </md-input-container>
+
+
+            <md-card-actions>
+              <md-button-toggle>
+                <button md-raised-button type="submit" [disabled]="!buddyForm.valid" class="btn btn-submit">Submit
+                </button>
+              </md-button-toggle>
+            </md-card-actions>
           </div>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-
-
-          <md-input-container>
-            <label>What is your Exchange Program?</label>
-            <input mdInput class="form-control" formControlName="exchangeProgram" required>
-            <md-hint
-              *ngIf="buddyForm.controls['exchangeProgram'].hasError('required')&&buddyForm.controls['exchangeProgram'].touched"
-              class="alert alert-danger">Please enter your Exchange Program
-            </md-hint>
-          </md-input-container>
-
-
-          <md-card-actions>
-            <md-button-toggle>
-              <button md-raised-button type="submit" [disabled]="!buddyForm.valid" class="btn btn-submit">Submit
-              </button>
-            </md-button-toggle>
-          </md-card-actions>
-        </div>
-      </md-card-content>
-    </md-card>
-  </form>
+        </md-card-content>
+      </md-card>
+    </div>
+  </div>
+</form>
 
 

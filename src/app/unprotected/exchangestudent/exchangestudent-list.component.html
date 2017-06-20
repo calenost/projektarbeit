@@ -1,12 +1,50 @@
-<div class="row">
-  <div class="col-xs-12">
-    <div class="table-responsive">
-      <table class="table">
-        <app-exchangestudent-item *ngFor="let exchangeStudent of exchangeStudents"
-                                  [exchangeStudent]="exchangeStudent"
-        ></app-exchangestudent-item>
-      </table>
-    </div>
-  </div>
-</div>
+<div class="table-responsive">
+  <div class="panel panel-heading">Exchange Student</div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Email</th>
+      <th>Country</th>
+      <th>First Language</th>
+      <th>Second Language</th>
+      <th>Study Subject</th>
+      <th>Host University</th>
+      <th>Duration</th>
+      <th>Exchange Program</th>
+      <th>Preferred Mentor Gender</th>
+      <th>Comments</th>
+    </tr>
+    </thead>
+    <tbody>
 
+    <tr (click)="navigateToLink([exchangeStudent.id])" style="cursor:pointer"
+        *ngFor="let exchangeStudent of exchangeStudents">
+      <td>{{exchangeStudent.id}}</td>
+      <td>{{exchangeStudent.name}}</td>
+      <td>{{exchangeStudent.surname}}</td>
+      <td>{{exchangeStudent.age}}</td>
+      <td>{{exchangeStudent.gender}}</td>
+      <td>{{exchangeStudent.emailAddress}}</td>
+      <td>{{exchangeStudent.country}}</td>
+      <td>{{exchangeStudent.firstLanguage}}</td>
+      <td>{{exchangeStudent.secondLanguage}}</td>
+      <td>{{exchangeStudent.studySubject}}</td>
+      <td>{{exchangeStudent.hostUniversity}}</td>
+      <td>{{exchangeStudent.duration}}</td>
+      <td>{{exchangeStudent.exchangeProgram}}</td>
+      <td>{{exchangeStudent.preferredGender}}</td>
+      <td>{{exchangeStudent.comments}}</td>
+    </tr>
+    <!--<app-exchangestudent-item *ngFor="let exchangeStudent of exchangeStudents"
+                              [exchangeStudent]="exchangeStudent"
+    >
+
+    </app-exchangestudent-item>-->
+    </tbody>
+  </table>
+</div>
