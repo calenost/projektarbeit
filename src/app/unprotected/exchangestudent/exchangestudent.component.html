@@ -124,7 +124,7 @@
 
 <form [formGroup]="buddyForm" novalidate (ngSubmit)="onSubmit()">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-sm-6">
       <md-card class="mat-card">
         <md-card-header>
           <md-card-title>Personal information</md-card-title>
@@ -139,7 +139,7 @@
                        class="alert alert-danger">Please enter a name
               </md-hint>
             </md-input-container>
-
+&nbsp;&nbsp;
             <md-input-container class="md-block">
               <label>Last Name</label>
               <input mdInput class="form-control" formControlName="surname" required>
@@ -148,7 +148,7 @@
                 class="alert alert-danger">Last name is required
               </md-hint>
             </md-input-container>
-
+            &nbsp;&nbsp;
             <md-input-container class="md-block">
               <label>E-mail Address</label>
               <input mdInput class="form-control" formControlName="emailAddress"
@@ -159,7 +159,7 @@
                 Your E-Mail Address doesn't look like an E-Mail Address
               </md-hint>
             </md-input-container>
-
+            &nbsp;&nbsp;
             <md-input-container class="md-block">
               <label> How old are you?</label>
               <input mdInput class="form-control" formControlName="age" ng-pattern="/^[1-9]{2}$/">
@@ -167,18 +167,18 @@
                        class="alert alert-danger">Please enter a valid age
               </md-hint>
             </md-input-container>
-
+<br/><br/>
 
             <md-radio-group formControlName="gender">
-              <label> What's your gender?</label><br/>
+              <label> What's your gender?</label><br/><br/>
               <md-radio-button value="male" checked="true"> Male</md-radio-button>
               <md-radio-button value="female"> Female</md-radio-button>
               <md-radio-button value="other"> Other</md-radio-button>
             </md-radio-group>
-
+<br/><br/>
 
             <md-radio-group formControlName="preferredGender">
-              <label> What gender should your Mentor have?</label><br/>
+              <label> What gender should your Mentor have?</label><br/><br/>
 
               <md-radio-button value="male" checked="true"> Male</md-radio-button>
 
@@ -195,7 +195,7 @@
         </md-card-content>
       </md-card>
     </div>
-    <div class="col-md-6">
+    <div class="col-sm-6">
       <md-card class="mat-card">
         <md-card-header>
           <md-card-title>Information on your studies
@@ -211,9 +211,9 @@
                 class="alert alert-danger">Please enter a studySubject
               </md-hint>
             </md-input-container>
-            <br/>
+            <br/><br/>
             <md-radio-group formControlName="hostUniversity">
-              <label>At which university are you going to study?</label><br/>
+              <label>At which university are you going to study?</label><br/><br/>
               <md-radio-button value="FH" checked="true"> Fachhochschule Dortmund (University of Applied
                 Sciences)
               </md-radio-button>
@@ -223,7 +223,7 @@
               <md-radio-button value="none"> None of the above</md-radio-button>
               <br>
             </md-radio-group>
-
+<br/>
               <md-input-container>
                 <label>Mother tongue (French, Spanish, etc.)</label>
                 <input mdInput class="form-control" formControlName="firstLanguage" required>
@@ -232,8 +232,8 @@
                   class="alert alert-danger">Please enter your primary language
                 </md-hint>
               </md-input-container>
-
-              <md-input-container>
+            &nbsp;&nbsp;
+            <md-input-container>
                 <label>Second language</label>
                 <input mdInput class="form-control" formControlName="secondLanguage" required>
                 <md-hint
@@ -251,7 +251,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-6">
       <md-card>
         <md-card-header>
           <md-card-title>Other information

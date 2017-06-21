@@ -33,6 +33,8 @@ import {AngularFireDatabaseModule} from "angularfire2/database";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import { LocalListComponent } from './unprotected/local/local-list.component';
 import {LocalStudentService} from "./unprotected/local/localstudent.service";
+import { HomeComponent } from './unprotected/home.component';
+import { SubmittedComponent } from './unprotected/submitted.component';
 //import {hammerjs} from 'https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js';
 /*
  export const firebaseconfig = {     // Initialize Firebase
@@ -56,7 +58,9 @@ import {LocalStudentService} from "./unprotected/local/localstudent.service";
     ExchangestudentComponent,
     ExchangestudentListComponent,
     ExchangestudentItemComponent,
-    LocalListComponent
+    LocalListComponent,
+    HomeComponent,
+    SubmittedComponent
   ],
   imports: [
     BrowserModule,

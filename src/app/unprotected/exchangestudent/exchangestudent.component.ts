@@ -7,6 +7,7 @@ import {ExchangeStudent} from './exchangestudent.model'
 
 import {AppModule} from '../../app.module';
 import {ExchangestudentService} from "./exchangestudent.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -16,12 +17,9 @@ import {ExchangestudentService} from "./exchangestudent.service";
   inputs: []
 })
 export class ExchangestudentComponent implements OnInit {
-  dummy: ExchangeStudent;
-  buddy:ExchangeStudent;
-  id: number;
+  id=0;
   buddyForm:FormGroup;
-  constructor(private _formBuilder: FormBuilder, private es:ExchangestudentService) {
-
+  constructor(private _formBuilder: FormBuilder, private es:ExchangestudentService, private router:Router) {
   }
 
 /*
@@ -42,9 +40,7 @@ export class ExchangestudentComponent implements OnInit {
   });*/
 
   onSubmit(){
-    const length=this.es.getExchangeStudents().length;
 
-    this.id=this.es.getExchangeStudent(length-1).id;
     console.log(this.buddyForm.value);
     const exchangeStudent:ExchangeStudent=this.buddyForm.value;
     exchangeStudent.id=this.id;
@@ -52,14 +48,14 @@ export class ExchangestudentComponent implements OnInit {
       this.es.addExchangeStudent(exchangeStudent);
     }catch(ex){ console.log(ex.toString())}
     this.id++;
-
+    this.router.navigate(['submitted']).catch(reason => {
+      console.log(reason);
+    });
 
   }
 
 
   ngOnInit() {
-
-    this.id=0;
     this.buddyForm= this._formBuilder.group({
      name: [null, [Validators.required, Validators.minLength(2)]],
      surname: [null, [Validators.required, Validators.minLength(2)]],
@@ -74,6 +70,15 @@ export class ExchangestudentComponent implements OnInit {
      comments: [],
      gender: [null,Validators.required],
      exchangeProgram: []});
+    this.buddyForm.markAsTouched();
+    var exchangestudents=this.es.getExchangeStudents();
+    console.log(exchangestudents.length);
+    var length=this.es.getExchangeStudents().length;
+
+    console.log(this.es.getExchangeStudents().length);
+    console.log(length);
+    this.id=length;
   }
+
 
 }

@@ -16,7 +16,7 @@ export class ExchangestudentService {
   items: FirebaseListObservable<ExchangeStudent[]>;
   exchangeStudentsChanged = new EventEmitter<ExchangeStudent[]>();
 
-  constructor(private http: Http, database:AngularFireDatabase) {
+  constructor(private http: Http, private database:AngularFireDatabase) {
     this.items=database.list('/exchangestudents');
     this.fetchData();
   }
@@ -39,6 +39,7 @@ export class ExchangestudentService {
   }
 
   storeData() {
+    this.database.object('/exchangestudents').remove();
     const body = JSON.stringify(this.exchangeStudents);
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http.post('https://projektarbeit-fb86a.firebaseio.com/exchangestudents.json', body, {
@@ -49,6 +50,7 @@ export class ExchangestudentService {
 
 
   fetchData(){
+
     this.http.get('https://projektarbeit-fb86a.firebaseio.com/exchangestudents.json').map((response: Response) => {
       const data =response.json();
       const returnArray=[];

@@ -1,5 +1,5 @@
 <md-toolbar class="primary">Request an Exchange Student</md-toolbar>
-<form [formGroup]="localForm" #myForm="ngForm" novalidate (ngSubmit)="onSubmit(localForm)">
+<form [formGroup]="localForm" #myForm="ngForm" novalidate (ngSubmit)="onSubmit()">
   <div class="form-group">
     <md-card class="mat-card">
       <md-card-header>
@@ -15,7 +15,7 @@
                      class="alert alert-danger">Please enter a name
             </md-hint>
           </md-input-container>
-
+          &nbsp;&nbsp;
           <md-input-container class="md-block">
             <label>Last Name</label>
             <input mdInput class="form-control" formControlName="surname" required>
@@ -23,7 +23,7 @@
                      class="alert alert-danger">Last name is required
             </md-hint>
           </md-input-container>
-
+          &nbsp;&nbsp;
           <md-input-container class="md-block">
             <label>E-mail Address</label>
             <input mdInput class="form-control" formControlName="emailAddress"
@@ -34,6 +34,7 @@
               Your E-Mail Address doesn't look like an E-Mail Address
             </md-hint>
           </md-input-container>
+          &nbsp;&nbsp;
           <md-input-container class="md-block">
             <label>City</label>
             <input mdInput class="form-control" formControlName="city"
@@ -44,6 +45,7 @@
               City is required
             </md-hint>
           </md-input-container>
+          &nbsp;&nbsp;
           <md-input-container class="md-block">
             <label>Where are you from?</label>
             <input mdInput class="form-control" formControlName="country"
@@ -56,6 +58,7 @@
                      class="alert alert-danger">Please enter a valid age
             </md-hint>
           </md-input-container>
+          &nbsp;&nbsp;
           <md-input-container class="md-block">
             <label>Phone number</label>
             <input mdInput class="form-control" formControlName="phoneNumber"
@@ -66,17 +69,17 @@
               Please enter a Phone number
             </md-hint>
           </md-input-container>
-          <br/>
+          <br/><br/>
           <md-radio-group formControlName="gender">
-            <label> What's your gender?</label><br/>
+            <label> What's your gender?</label><br/> <br/>
             <md-radio-button value="male" checked="true"> Male</md-radio-button>
             <md-radio-button value="female"> Female</md-radio-button>
             <md-radio-button value="other"> Other</md-radio-button>
           </md-radio-group>
 
-          <br/>
+          <br/><br/>
           <md-radio-group formControlName="preferredGender">
-            <label> What gender should your Buddy have?</label><br/>
+            <label> What gender should your Buddy have?</label><br/><br/>
 
             <md-radio-button value="male" checked="true"> Male</md-radio-button>
 
@@ -106,36 +109,32 @@
           </md-hint>
         </md-input-container>
         <br/>
-        <div class="div-left">
-          <md-input-container>
-            <label>Mother tongue (German,French, Spanish, etc.)</label>
-            <input mdInput class="form-control" formControlName="firstLanguage" required>
-            <md-hint
-              *ngIf="localForm.controls['firstLanguage'].hasError('required')&&localForm.controls['firstLanguage'].touched"
-              class="alert alert-danger">Please enter your primary language
-            </md-hint>
-          </md-input-container>
-        </div>
-        <div class="div-right">
-          <md-input-container>
-            <label>Second language</label>
-            <input mdInput class="form-control" formControlName="secondLanguage" required>
-            <md-hint
-              *ngIf="localForm.controls['secondLanguage'].hasError('required')&&localForm.controls['secondLanguage'].touched"
-              class="alert alert-danger">Please enter your second language
-            </md-hint>
-          </md-input-container>
-        </div>
+
+        <md-input-container>
+          <label>Mother tongue (German,French, Spanish, etc.)</label>
+          <input mdInput class="form-control" formControlName="firstLanguage" required>
+          <md-hint
+            *ngIf="localForm.controls['firstLanguage'].hasError('required')&&localForm.controls['firstLanguage'].touched"
+            class="alert alert-danger">Please enter your primary language
+          </md-hint>
+        </md-input-container>
+
+        &nbsp;&nbsp;
+        <md-input-container>
+          <label>Second language</label>
+          <input mdInput class="form-control" formControlName="secondLanguage" required>
+          <md-hint
+            *ngIf="localForm.controls['secondLanguage'].hasError('required')&&localForm.controls['secondLanguage'].touched"
+            class="alert alert-danger">Please enter your second language
+          </md-hint>
+        </md-input-container>
+        &nbsp;&nbsp;
         <md-input-container>
           <label>Third language</label>
           <input mdInput class="form-control" formControlName="thirdLanguage">
         </md-input-container>
-
+        &nbsp;&nbsp;
       </div>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
     </md-card-content>
 
   </md-card>
@@ -146,31 +145,32 @@
     </md-card-header>
     <md-card-content>
       <div class="from-group">
-        <div class="div-left">
-          <md-input-container>
-            <label>Have you been on exchange? Where?</label>
-            <input mdInput class="form-control" formControlName="pastExchangeSemester">
-          </md-input-container>
-        </div>
+
+        <md-input-container>
+          <label>Have you been on exchange? Where?</label>
+          <input mdInput class="form-control" formControlName="pastExchangeSemester">
+        </md-input-container>
+        &nbsp;&nbsp;
         <md-input-container>
           <label>Are you planning to go on exchange? Where?</label>
           <input mdInput class="form-control" formControlName="futureExchangeSemester">
         </md-input-container>
-        <div class="div-right">
-          <md-input-container>
-            <label>Do you have any comments?</label>
-            <input mdInput class="form-control" formControlName="comments">
-          </md-input-container>
-        </div>
+        &nbsp;&nbsp;
+        <md-input-container>
+          <label>Do you have any comments?</label>
+          <input mdInput class="form-control" formControlName="comments">
+        </md-input-container>
+        &nbsp;&nbsp;
         <md-input-container>
           <label>Do you have any preferences concerning your Buddy?</label>
           <input mdInput class="form-control" formControlName="preferences">
         </md-input-container>
-
-        <md-slide-toggle formControlName="twoBuddies"> I am able to support two students during their stay in Dortmund
+        &nbsp;&nbsp;
+        <label>I am able to support two students during their stay in Dortmund</label>
+        <md-slide-toggle formControlName="twoBuddies"> <p></p>
         </md-slide-toggle>
 
-
+        &nbsp;&nbsp;
         <md-card-actions>
           <md-button-toggle>
             <button md-raised-button type="submit" [disabled]="!localForm.valid" class="btn btn-submit">Submit
