@@ -52,10 +52,10 @@ export class ExchangestudentService {
   fetchData(){
 
     this.http.get('https://projektarbeit-fb86a.firebaseio.com/exchangestudents.json').map((response: Response) => {
-      const data =response.json();
-      const returnArray=[];
+      var data =response.json();
+      var returnArray=[];
       for (let key in data){
-        const array=data[key];
+        var array=data[key];
         for (let i in array)
         {
         returnArray.push(array[i]);
