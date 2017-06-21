@@ -4,20 +4,33 @@
 import {EventEmitter, Injectable} from "@angular/core";
 import {LocalStudent} from "./local.model";
 import {Headers, Http, Response} from "@angular/http";
-import 'rxjs/Rx';
-import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from "angularfire2/database";
-
+import "rxjs/Rx";
+import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
 
 
 @Injectable()
 export class LocalStudentService {
-  private localStudents: LocalStudent[]=[];
+  private localStudents: LocalStudent[] = [];
   items: FirebaseListObservable<LocalStudent[]>;
   localStudentsChanged = new EventEmitter<LocalStudent[]>();
 
-  constructor(private http: Http, database:AngularFireDatabase) {
-    this.items=database.list('/localstudents');
-    this.fetchData();
+  constructor(private http: Http, private database: AngularFireDatabase) {
+    this.items = database.list('/localstudents');
+    this.fetchData().subscribe((data) =>
+      this.onSuccess(data));
+  }
+
+  onSuccess(local: any[]) {
+
+    var array: LocalStudent[] = [];
+    for (let key in local) {
+      array = local[key];
+      for (let i in array) {
+        this.localStudents.push(array[i]);
+        this.localStudentsChanged.emit(this.localStudents);
+      }
+    }
+
   }
 
   addLocalStudent(localStudent: LocalStudent) {
@@ -38,6 +51,9 @@ export class LocalStudentService {
   }
 
   storeData() {
+    this.fetchData().subscribe((data) =>
+      this.onSuccess(data));
+    this.database.object('/localstudents').remove();
     const body = JSON.stringify(this.localStudents);
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http.post('https://projektarbeit-fb86a.firebaseio.com/localstudents.json', body, {
@@ -46,27 +62,8 @@ export class LocalStudentService {
   }
 
 
-
-  fetchData(){
-    this.http.get('https://projektarbeit-fb86a.firebaseio.com/localstudents.json').map((response: Response) => {
-      const data =response.json();
-      const returnArray=[];
-      for (let key in data){
-        const array=data[key];
-        for (let i in array)
-        {
-          returnArray.push(array[i]);
-        }
-      }
-      return returnArray}).subscribe(
-      (localStudent: LocalStudent[]) => {
-        for (let key in localStudent)
-        {
-          this.localStudents.push(localStudent[key]);
-          this.localStudentsChanged.emit(this.localStudents);}
-      }
-    );
+  fetchData() {
+    return this.http.get('https://projektarbeit-fb86a.firebaseio.com/localstudents.json').map((response: Response) => response.json());
   }
-
 
 }

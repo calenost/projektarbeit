@@ -3,12 +3,9 @@
  */
 import {EventEmitter, Injectable} from "@angular/core";
 import {ExchangeStudent} from "./exchangestudent.model";
-import {Headers, Http, Response} from "@angular/http";
-import 'rxjs/Rx';
-import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from "angularfire2/database";
-import {error} from "util";
-import {tryCatch} from "rxjs/util/tryCatch";
-import {expressionChangedAfterItHasBeenCheckedError} from "@angular/core/src/view/errors";
+import {Headers, Http} from "@angular/http";
+import "rxjs/Rx";
+import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
 
 @Injectable()
 export class ExchangestudentService {
@@ -16,9 +13,23 @@ export class ExchangestudentService {
   items: FirebaseListObservable<ExchangeStudent[]>;
   exchangeStudentsChanged = new EventEmitter<ExchangeStudent[]>();
 
-  constructor(private http: Http, private database:AngularFireDatabase) {
-    this.items=database.list('/exchangestudents');
-    this.fetchData();
+  constructor(private http: Http, private database: AngularFireDatabase) {
+    this.items = database.list('/exchangestudents');
+    this.fetchData().subscribe((data) =>
+        this.onSuccess(data));
+  }
+
+  onSuccess(exchangeStudent: any[]) {
+
+    var array:ExchangeStudent[]=[];
+    for (let key in exchangeStudent) {
+      array=exchangeStudent[key];
+      for(let i in array) {
+        this.exchangeStudents.push(array[i]);
+        this.exchangeStudentsChanged.emit(this.exchangeStudents);
+      }
+    }
+
   }
 
   addExchangeStudent(exchangeStudent: ExchangeStudent) {
@@ -36,6 +47,7 @@ export class ExchangestudentService {
 
   deleteExchangeStudent(id: number) {
     this.exchangeStudents.splice(id, 1);
+
   }
 
   storeData() {
@@ -48,27 +60,8 @@ export class ExchangestudentService {
   }
 
 
-
-  fetchData(){
-
-    this.http.get('https://projektarbeit-fb86a.firebaseio.com/exchangestudents.json').map((response: Response) => {
-      var data =response.json();
-      var returnArray=[];
-      for (let key in data){
-        var array=data[key];
-        for (let i in array)
-        {
-        returnArray.push(array[i]);
-        }
-      }
-      return returnArray}).subscribe(
-      (exchangeStudent: ExchangeStudent[]) => {
-        for (let key in exchangeStudent)
-        {
-          this.exchangeStudents.push(exchangeStudent[key]);
-          this.exchangeStudentsChanged.emit(this.exchangeStudents);}
-      }
-    );
+  fetchData() {
+    return this.http.get('https://projektarbeit-fb86a.firebaseio.com/exchangestudents.json').map(response => response.json());
   }
 
 

@@ -39,10 +39,11 @@ export class LocalComponent implements OnInit{
       futureExchangeSemester:[],
       preferences:[],
       comments:[]
+
     });
     this.localForm.markAsTouched();
-    const length = this.ls.getLocalStudents().length;
-    this.id = this.ls.getLocalStudent(length - 1).id;
+    var length=this.ls.getLocalStudents().length;
+    this.id=length;
 }
   onSubmit() {
     console.log(this.localForm.value);

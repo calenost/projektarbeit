@@ -24,5 +24,4 @@ export class ExchangestudentListComponent implements OnInit {
       console.log(reason);
     });
   }
-
 }
