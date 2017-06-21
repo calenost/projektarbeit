@@ -22,7 +22,7 @@ export class LocalStudentService {
 
   onSuccess(local: any[]) {
 
-    var array: LocalStudent[] = [];
+    let array: LocalStudent[] = [];
     for (let key in local) {
       array = local[key];
       for (let i in array) {
@@ -30,7 +30,6 @@ export class LocalStudentService {
         this.localStudentsChanged.emit(this.localStudents);
       }
     }
-
   }
 
   addLocalStudent(localStudent: LocalStudent) {

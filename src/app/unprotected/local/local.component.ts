@@ -42,7 +42,7 @@ export class LocalComponent implements OnInit{
 
     });
     this.localForm.markAsTouched();
-    var length=this.ls.getLocalStudents().length;
+    let length=this.ls.getLocalStudents().length;
     this.id=length;
 }
   onSubmit() {

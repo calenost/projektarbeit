@@ -21,7 +21,7 @@ export class ExchangestudentService {
 
   onSuccess(exchangeStudent: any[]) {
 
-    var array:ExchangeStudent[]=[];
+    let array:ExchangeStudent[]=[];
     for (let key in exchangeStudent) {
       array=exchangeStudent[key];
       for(let i in array) {

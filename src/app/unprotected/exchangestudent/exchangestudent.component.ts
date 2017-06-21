@@ -71,7 +71,7 @@ export class ExchangestudentComponent implements OnInit {
      gender: [null,Validators.required],
      exchangeProgram: []});
     this.buddyForm.markAsTouched();
-    var length=this.es.getExchangeStudents().length;
+    let length=this.es.getExchangeStudents().length;
     this.id=length;
   }
 
