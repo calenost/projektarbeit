@@ -10,6 +10,7 @@ import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database
 @Injectable()
 export class ExchangestudentService {
   private exchangeStudents: ExchangeStudent[]=[];
+  private currentStudent:ExchangeStudent;
   items: FirebaseListObservable<ExchangeStudent[]>;
   exchangeStudentsChanged = new EventEmitter<ExchangeStudent[]>();
 
@@ -18,7 +19,14 @@ export class ExchangestudentService {
     this.fetchData().subscribe((data) =>
         this.onSuccess(data));
   }
-
+  getCurrentStudent()
+  {
+    return this.currentStudent;
+  }
+  setCurrentStudent(id:any)
+  {
+    this.currentStudent=this.exchangeStudents[id];
+  }
   onSuccess(exchangeStudent: any[]) {
 
     let array:ExchangeStudent[]=[];
@@ -47,8 +55,8 @@ export class ExchangestudentService {
 
   deleteExchangeStudent(id: number) {
     this.exchangeStudents.splice(id, 1);
-
-  }
+    this.exchangeStudentsChanged.emit(this.exchangeStudents);
+      }
 
   storeData() {
     this.database.object('/exchangestudents').remove();

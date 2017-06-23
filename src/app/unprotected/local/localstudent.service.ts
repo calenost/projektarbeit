@@ -11,6 +11,7 @@ import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database
 @Injectable()
 export class LocalStudentService {
   private localStudents: LocalStudent[] = [];
+  private currentStudent:LocalStudent;
   items: FirebaseListObservable<LocalStudent[]>;
   localStudentsChanged = new EventEmitter<LocalStudent[]>();
 
@@ -19,20 +20,33 @@ export class LocalStudentService {
     this.fetchData().subscribe((data) =>
       this.onSuccess(data));
   }
-
+getCurrentStudent()
+{
+  return this.currentStudent;
+}
+setCurrentStudent(id:any)
+{
+  this.currentStudent=this.localStudents[id];
+}
   onSuccess(local: any[]) {
-
+    this.localStudents=[];
     let array: LocalStudent[] = [];
     for (let key in local) {
       array = local[key];
       for (let i in array) {
         this.localStudents.push(array[i]);
-        this.localStudentsChanged.emit(this.localStudents);
+
       }
     }
+    this.localStudentsChanged.emit(this.localStudents);
   }
 
   addLocalStudent(localStudent: LocalStudent) {
+    if(localStudent.twoBuddies){
+      this.localStudents.push(localStudent);
+      localStudent.id=localStudent.id++;
+      this.localStudents.push(localStudent);
+    }
     this.localStudents.push(localStudent);
     this.storeData().subscribe();
   }
@@ -47,6 +61,7 @@ export class LocalStudentService {
 
   deleteLocalStudent(id: number) {
     this.localStudents.splice(id, 1);
+    this.localStudentsChanged.emit(this.localStudents);
   }
 
   storeData() {

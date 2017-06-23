@@ -41,7 +41,6 @@ isAuthenticated()
       state.next(true);
     }else{
       state.next(false);
-
     }
   });
   return state.asObservable();

@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {AuthService} from "../auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signin',
@@ -24,10 +25,15 @@ export class SigninComponent implements OnInit {
   signinForm: FormGroup;
 
   constructor(private fb: FormBuilder,
-              private authService: AuthService) {
+              private authService: AuthService, private router:Router) {
   }
   onSignin(){
     this.authService.signinUser(this.signinForm.value);
+    if(this.authService.isAuthenticated())
+    {
+      this.router.navigate(['admin']);
+    }
+
 
   }
 

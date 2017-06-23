@@ -3,6 +3,7 @@
   <table class="table">
     <thead>
     <tr>
+      <th>Select</th>
       <th>ID</th>
       <th>Firstname</th>
       <th>Lastname</th>
@@ -15,7 +16,6 @@
       <th>Second Language</th>
       <th>Third Language</th>
       <th>Study Subject</th>
-      <th>Two Buddies</th>
       <th>Past Exchange Semester</th>
       <th>Future Exchange Semester</th>
       <th>Preferred Buddy Gender</th>
@@ -24,8 +24,10 @@
     </tr>
     </thead>
     <tbody>
+<!--(click)="navigateToLink([localStudent.id])"-->
 
-    <tr (click)="navigateToLink([localStudent.id])" style="cursor:pointer" *ngFor="let localStudent of localStudents">
+    <tr  style="cursor:pointer" [ngStyle]="{'grey-border':attachStyle}" *ngFor="let localStudent of localStudents">
+      <td><input type="checkbox" (click)="matchLocal(localStudent.id);" ></td>
       <td>{{localStudent.id}}</td>
       <td>{{localStudent.name}}</td>
       <td>{{localStudent.surname}}</td>
@@ -38,13 +40,14 @@
       <td>{{localStudent.secondLanguage}}</td>
       <td>{{localStudent.thirdLanguage}}</td>
       <td>{{localStudent.studySubject}}</td>
-      <td>{{localStudent.twoBuddies}}</td>
       <td>{{localStudent.pastExchangeSemester}}</td>
       <td>{{localStudent.futureExchangeSemester}}</td>
       <td>{{localStudent.preferredGender}}</td>
       <td>{{localStudent.preferences}}</td>
       <td>{{localStudent.comments}}</td>
     </tr>
+
+
     <!--<app-exchangestudent-item *ngFor="let exchangeStudent of exchangeStudents"
                               [exchangeStudent]="exchangeStudent"
     >

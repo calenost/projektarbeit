@@ -3,6 +3,7 @@
   <table class="table">
     <thead>
     <tr>
+      <th>Select</th>
       <th>ID</th>
       <th>Firstname</th>
       <th>Lastname</th>
@@ -21,9 +22,9 @@
     </tr>
     </thead>
     <tbody>
-
-    <tr (click)="navigateToLink([exchangeStudent.id])" style="cursor:pointer"
-        *ngFor="let exchangeStudent of exchangeStudents">
+    <!--(click)="navigateToLink([exchangeStudent.id])"-->
+    <tr style="cursor:pointer" [ngStyle]="{'grey-border':attachStyle}" *ngFor="let exchangeStudent of exchangeStudents">
+      <td><input type="checkbox" (click)="matchExchangestudent(exchangeStudent.id)"></td>
       <td>{{exchangeStudent.id}}</td>
       <td>{{exchangeStudent.name}}</td>
       <td>{{exchangeStudent.surname}}</td>
