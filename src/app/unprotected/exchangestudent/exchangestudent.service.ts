@@ -4,18 +4,20 @@
 import {EventEmitter, Injectable} from "@angular/core";
 import {ExchangeStudent} from "./exchangestudent.model";
 import {Headers, Http} from "@angular/http";
-import "rxjs/Rx";
-import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
+//import "rxjs/Rx";
+import "rxjs/add/operator/map";
+import {AngularFireDatabase} from "angularfire2/database";
 
 @Injectable()
 export class ExchangestudentService {
-  private exchangeStudents: ExchangeStudent[]=[];
+
+  private exchangeStudents: ExchangeStudent[] = [];
   private currentStudent:ExchangeStudent;
-  items: FirebaseListObservable<ExchangeStudent[]>;
+
   exchangeStudentsChanged = new EventEmitter<ExchangeStudent[]>();
 
   constructor(private http: Http, private database: AngularFireDatabase) {
-    this.items = database.list('/exchangestudents');
+
     this.fetchData().subscribe((data) =>
         this.onSuccess(data));
   }

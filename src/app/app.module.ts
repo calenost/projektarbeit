@@ -14,7 +14,9 @@ import {
   MdGridListModule,
   MdIconModule,
   MdInputModule,
+  MdOptionModule,
   MdRadioModule,
+  MdSelectModule,
   MdSlideToggleModule,
   MdToolbarModule
 } from "@angular/material";
@@ -31,10 +33,11 @@ import {ExchangestudentItemComponent} from "./unprotected/exchangestudent/exchan
 import {environment} from "../environments/environment";
 import {AngularFireDatabaseModule} from "angularfire2/database";
 import {AngularFireAuthModule} from "angularfire2/auth";
-import { LocalListComponent } from './unprotected/local/local-list.component';
+import {LocalListComponent} from "./unprotected/local/local-list.component";
 import {LocalStudentService} from "./unprotected/local/localstudent.service";
-import { HomeComponent } from './unprotected/home.component';
-import { SubmittedComponent } from './unprotected/submitted.component';
+import {HomeComponent} from "./unprotected/home.component";
+import {SubmittedComponent} from "./unprotected/submitted.component";
+import {LanguageListService} from "./unprotected/language-list.service";
 //import {hammerjs} from 'https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js';
 /*
  export const firebaseconfig = {     // Initialize Firebase
@@ -80,6 +83,8 @@ import { SubmittedComponent } from './unprotected/submitted.component';
     MdChipsModule,
     MdCardModule,
     MdSlideToggleModule,
+    MdSelectModule,
+    MdOptionModule,
     HttpModule
   ],
   exports: [
@@ -92,7 +97,7 @@ import { SubmittedComponent } from './unprotected/submitted.component';
     MdCardModule,
     MdInputModule
   ],
-  providers: [AuthService, AdminGuard, ExchangestudentService, LocalStudentService],
+  providers: [AuthService, AdminGuard, ExchangestudentService, LocalStudentService, LanguageListService],
 
   bootstrap: [AppComponent]
 })

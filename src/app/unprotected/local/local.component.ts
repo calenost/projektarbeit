@@ -2,10 +2,12 @@
  * Created by Felix on 20.05.2017.
  */
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormBuilder, Validators, Form,} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {LocalStudent} from './local.model';
 import {LocalStudentService} from "./localstudent.service";
 import {Router} from "@angular/router";
+import {LanguageListService} from "../language-list.service";
+import {Language} from "../Language.model";
 @Component(
 {
   selector: 'app-localstudent',
@@ -17,8 +19,11 @@ import {Router} from "@angular/router";
 export class LocalComponent implements OnInit{
   localForm:FormGroup;
   id:number;
-  constructor(private _formBuilder: FormBuilder, private ls:LocalStudentService, private router:Router)
-  {}
+  languages:Language[];
+  constructor(private _formBuilder: FormBuilder, private ls:LocalStudentService, private router:Router, private lang:LanguageListService)
+  {
+    this.languages=lang.getLanguageList();
+  }
   ngOnInit(){
     this.localForm=this._formBuilder.group({
       name: [null, [Validators.required, Validators.minLength(2)]],
@@ -48,7 +53,6 @@ export class LocalComponent implements OnInit{
   onSubmit() {
     let length=this.ls.getLocalStudents().length;
     this.id=length;
-    debugger;
     console.log(this.localForm.value);
     const localStudent: LocalStudent = this.localForm.value;
     localStudent.id = this.id;

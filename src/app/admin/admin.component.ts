@@ -2,8 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {LocalStudentService} from "../unprotected/local/localstudent.service";
 import {ExchangestudentService} from "../unprotected/exchangestudent/exchangestudent.service";
 import {Nodemailer} from 'nodemailer';
-import {ExchangestudentListComponent} from "../unprotected/exchangestudent/exchangestudent-list.component";
-import {LocalListComponent} from "../unprotected/local/local-list.component";
+import {LocalStudent} from "../unprotected/local/local.model";
+import {ExchangeStudent} from "../unprotected/exchangestudent/exchangestudent.model";
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -27,10 +27,10 @@ match()
 }
   sendMail(esId, lsId)
   {
-    console.log(esId+lsId)
+    console.log(esId+lsId);
     let exchangeStudent=this.es.getExchangeStudent(esId);
     let localStudent=this.ls.getLocalStudent(lsId);
-    const nodemailer:Nodemailer=new Nodemailer();
+   /* const nodemailer : Nodemailer=new Nodemailer();
     let transporter= nodemailer.createTransport(
       {
         host: "mailout1.fh-dortmund.de",
@@ -64,7 +64,7 @@ match()
       from: '"Felix Ebberg" <felix.ebberg@stud.fh-dortmund.de>',
       to: localStudent.emailAddress,
       subject: 'Dein Buddy',
-      html: '<strong>Hallo XXXXX</strong>,<br/><br/>bald geht es los, das Wintersemester und das Buddyprogramm für die Erasmus-Studenten starten!<br/>Bei der Auswahl der Buddies haben wir versucht deine Wünsche so gut wie möglich zu erfüllen.<br/><br/>Wir freuen uns dir deinen Buddy vorstellen zu können!<br/><br/><br/>Es ist '+exchangeStudent.name+exchangeStudent.surname+' aus '+exchangeStudent.country+'.<br/>'+exchangeStudent.emailAddress+'<br/><br/>Am besten du nimmst direkt Kontakt auf und schaust, wann sie/er in Deutschland eintrifft.<br/><br/><strong>WICHTIG:</strong> Falls du deinen Buddy nicht abholen kannst, melde dich so schnell wie möglich beim Faculty Exchange Point (fep.business-studies@fh-dortmund.de), damit wir uns darum kümmern können!<br/><br/><br/><br/>Wir machen am 25.08. eine kleine Schulung für die Teilnehmer des Buddyprogramms, damit ihr wisst was auf euch zu kommt, euch untereinander und eure Ansprechpartner kennenlernen könnt.<br/><br/>Die Schulung findet statt am 25.08. um 18:00 Uhr im Raum 0.50 in der EF 44 und wird voraussichtlich 30-60 Minuten dauern abhängig von den Fragen die aufkommen. Falls Interesse besteht bist du herzlich eingeladen mit uns danach den ESN Stammtisch zu besuchen um mehr über das ESN Netzwerk zu erfahren.<br/><br/><br/>Am 13.09. gibt es zudem eine Stadionführung, zu der du dich anmelden kannst! Hierzu bekommst du demnächst eine Email vom International Office.<br/><br/><br/>Im Anhang findest du schon mal einige Informationen.<br/><br/>Alles weitere klären wir am 25.08,<br/><br/><br/>bis dahin viele Grüße<br/><br/><br/><br/>Marvin Hake<br/>ESN Dortmund<br/>dortmund.esn-germany.de'
+      html: '<strong>Hallo'+localStudent.name+'</strong>,<br/><br/>bald geht es los, das Wintersemester und das Buddyprogramm für die Erasmus-Studenten starten!<br/>Bei der Auswahl der Buddies haben wir versucht deine Wünsche so gut wie möglich zu erfüllen.<br/><br/>Wir freuen uns dir deinen Buddy vorstellen zu können!<br/><br/><br/>Es ist '+exchangeStudent.name+' '+exchangeStudent.surname+' aus '+exchangeStudent.country+'.<br/>'+exchangeStudent.emailAddress+'<br/><br/>Am besten du nimmst direkt Kontakt auf und schaust, wann sie/er in Deutschland eintrifft.<br/><br/><strong>WICHTIG:</strong> Falls du deinen Buddy nicht abholen kannst, melde dich so schnell wie möglich beim Faculty Exchange Point (fep.business-studies@fh-dortmund.de), damit wir uns darum kümmern können!<br/><br/><br/><br/>Wir machen am 25.08. eine kleine Schulung für die Teilnehmer des Buddyprogramms, damit ihr wisst was auf euch zu kommt, euch untereinander und eure Ansprechpartner kennenlernen könnt.<br/><br/>Die Schulung findet statt am 25.08. um 18:00 Uhr im Raum 0.50 in der EF 44 und wird voraussichtlich 30-60 Minuten dauern abhängig von den Fragen die aufkommen. Falls Interesse besteht bist du herzlich eingeladen mit uns danach den ESN Stammtisch zu besuchen um mehr über das ESN Netzwerk zu erfahren.<br/><br/><br/>Am 13.09. gibt es zudem eine Stadionführung, zu der du dich anmelden kannst! Hierzu bekommst du demnächst eine Email vom International Office.<br/><br/><br/>Im Anhang findest du schon mal einige Informationen.<br/><br/>Alles weitere klären wir am 25.08,<br/><br/><br/>bis dahin viele Grüße<br/><br/><br/><br/>Marvin Hake<br/>ESN Dortmund<br/>dortmund.esn-germany.de'
     };
     transporter.sendMail(HelperOptionsLs, (error, info) => {
       if(error) {
@@ -74,9 +74,22 @@ match()
         console.log(info);
         this.ls.deleteLocalStudent(lsId);
       }
-    });
+    });*/
   }
-  ngOnInit() {
+  /*matchGraph() {
+    let exchangeStudents=this.es.getExchangeStudents();
+    let localStudents=this.ls.getLocalStudents();
+    for( let exchangestudent:ExchangeStudent in exchangeStudents)
+    {
+      for (let localstudent:LocalStudent in localStudents)
+      {
+        if(localstudent.studySubject==exchangestudent.studySubject)
+        {}
+      }
+
+    }
+}*/
+  ngOnInit(){
 
 
   }

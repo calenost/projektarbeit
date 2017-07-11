@@ -110,29 +110,34 @@
         </md-input-container>
         <br/>
 
-        <md-input-container>
+        <label>Languages</label>
+        <md-select class="form-control" formControlName="firstLanguage" required>
           <label>Mother tongue (German,French, Spanish, etc.)</label>
-          <input mdInput class="form-control" formControlName="firstLanguage" required>
+          <md-option *ngFor="let lang of languages" [value]="lang.code">{{lang.language}}</md-option>
           <md-hint
             *ngIf="localForm.controls['firstLanguage'].hasError('required')&&localForm.controls['firstLanguage'].touched"
             class="alert alert-danger">Please enter your primary language
           </md-hint>
-        </md-input-container>
+        </md-select>
 
-        &nbsp;&nbsp;
-        <md-input-container>
-          <label>Second language</label>
-          <input mdInput class="form-control" formControlName="secondLanguage" required>
+        <md-select class="form-control" formControlName="secondLanguage" required>
+          <label>Second Language</label>
+          <md-option *ngFor="let lang of languages" [value]="lang.code">{{lang.language}}</md-option>
           <md-hint
             *ngIf="localForm.controls['secondLanguage'].hasError('required')&&localForm.controls['secondLanguage'].touched"
             class="alert alert-danger">Please enter your second language
           </md-hint>
-        </md-input-container>
-        &nbsp;&nbsp;
-        <md-input-container>
+        </md-select>
+
+
+        <md-select class="form-control" formControlName="thirdLanguage">
           <label>Third language</label>
-          <input mdInput class="form-control" formControlName="thirdLanguage">
-        </md-input-container>
+          <md-option *ngFor="let lang of languages" [value]="lang.code">{{lang.language}}</md-option>
+          <md-hint
+            *ngIf="localForm.controls['firstLanguage'].hasError('required')&&localForm.controls['firstLanguage'].touched"
+            class="alert alert-danger">Please enter your primary language
+          </md-hint>
+        </md-select>
         &nbsp;&nbsp;
       </div>
     </md-card-content>
@@ -167,7 +172,7 @@
         </md-input-container>
         &nbsp;&nbsp;
         <label>I am able to support two students during their stay in Dortmund</label>
-        <md-slide-toggle formControlName="twoBuddies"> <p></p>
+        <md-slide-toggle formControlName="twoBuddies"><p></p>
         </md-slide-toggle>
 
         &nbsp;&nbsp;

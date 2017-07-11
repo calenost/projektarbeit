@@ -2,9 +2,8 @@ import {User} from "./user.interface";
 import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
 import {Subject} from "rxjs/Subject";
-import * as firebase from 'firebase/app';
 import {AngularFireAuth} from "angularfire2/auth";
-import {Observable} from "rxjs/Observable";
+//import {Observable} from "rxjs/Observable";
  // sagt typescript, dass wir zur runtime eine variable firebase haben, welche in der index.html importiert wird
 /**
  * Created by Felix on 07.06.2017.

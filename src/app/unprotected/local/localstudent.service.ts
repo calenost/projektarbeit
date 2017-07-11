@@ -4,7 +4,8 @@
 import {EventEmitter, Injectable} from "@angular/core";
 import {LocalStudent} from "./local.model";
 import {Headers, Http, Response} from "@angular/http";
-import "rxjs/Rx";
+import"rxjs/add/operator/map";
+//import "rxjs/Rx";
 import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
 
 
