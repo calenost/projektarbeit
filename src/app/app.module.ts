@@ -20,12 +20,12 @@ import {
   MdSlideToggleModule,
   MdToolbarModule
 } from "@angular/material";
-import {HeaderComponent} from "./header.component";
+import {HeaderComponent} from "./unprotected/header.component";
 import {routing} from "./app.routing";
 import {AdminComponent} from "./admin/admin.component";
 import {SigninComponent} from "./unprotected/signin.component";
 import {SignupComponent} from "./unprotected/signup.component";
-import {AuthService} from "./auth.service";
+import {AuthService} from "./unprotected/auth.service";
 import {AdminGuard} from "./admin/admin.guard";
 import {ExchangestudentService} from "./unprotected/exchangestudent/exchangestudent.service";
 import {ExchangestudentListComponent} from "./unprotected/exchangestudent/exchangestudent-list.component";

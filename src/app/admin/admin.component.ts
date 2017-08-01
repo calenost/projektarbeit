@@ -8,7 +8,7 @@ import {ExchangeStudent} from "../unprotected/exchangestudent/exchangestudent.mo
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  styles: []
 })
 export class AdminComponent implements OnInit {
   esId: any = -1;
@@ -144,10 +144,8 @@ export class AdminComponent implements OnInit {
           let
             dataString = JSON.stringify(ES) + JSON.stringify(LS);
           csvContent+=dataString+"\n";
-
         }
-      )
-    ;
+      );
 
   }
 
