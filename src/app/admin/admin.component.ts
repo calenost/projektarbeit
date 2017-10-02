@@ -4,6 +4,7 @@ import {ExchangestudentService} from "../unprotected/exchangestudent/exchangestu
 import {Nodemailer} from "nodemailer";
 import {LocalStudent} from "../unprotected/local/local.model";
 import {ExchangeStudent} from "../unprotected/exchangestudent/exchangestudent.model";
+import {Angular2Csv} from "angular2-csv";
 
 @Component({
   selector: 'app-admin',
@@ -32,6 +33,7 @@ export class AdminComponent implements OnInit {
     console.log(esId + lsId);
     let exchangeStudent = this.es.getExchangeStudent(esId);
     let localStudent = this.ls.getLocalStudent(lsId);
+
     /* const nodemailer : Nodemailer=new Nodemailer();
      let transporter= nodemailer.createTransport(
      {
@@ -86,17 +88,26 @@ export class AdminComponent implements OnInit {
 
     exchangeStudents = this.es.getExchangeStudents();
     localStudents = this.ls.getLocalStudents();
+    let AustauschStudent = exchangeStudents;
+    let LokalerStudent = localStudents[1];
     let score: number;
-    let i = 0;
-    let j = 0;
+
+    let i = -1;
+    let j = -1;
 
 
     for (let exchangestudent of exchangeStudents) {
       if (exchangestudent.hostUniversity != 'FH') {
-        let id = exchangeStudents.indexOf(exchangestudent);
-        exchangeStudents.splice(id, 1);
+        /*let id = exchangeStudents.indexOf(exchangestudent);
+        exchangeStudents.splice(id, 1);*/
       } else {
-        i = exchangestudent.id;
+        i = exchangeStudents.indexOf(exchangestudent);
+        exchangestudent.scoreToLS = [{score: null, LS: null}];
+
+          exchangestudent.scoreToLS.splice(0, 1);
+        //debugger;
+        if(localStudents.length>0)
+        {
 
         for (let localstudent of localStudents) {
           j = localstudent.id;
@@ -115,6 +126,7 @@ export class AdminComponent implements OnInit {
           }
           exchangestudent.scoreToLS.push({score: score, LS: localstudent});
         }
+
         exchangestudent.scoreToLS = exchangestudent.scoreToLS.sort((localScoreOne, localScoreTwo) => {
           if (localScoreOne.score > localScoreTwo.score) {
             return -1
@@ -123,30 +135,61 @@ export class AdminComponent implements OnInit {
             return 1
           }
           return 0
-        });
+        })
+        }
 
         if (exchangestudent.scoreToLS[0]) {
           result.set(exchangestudent.scoreToLS[0].LS, exchangestudent);
-          let id = exchangeStudents.indexOf(exchangestudent);
-          exchangeStudents.splice(id, 1);
-          id = localStudents.indexOf(exchangestudent.scoreToLS[0].LS);
-          localStudents.splice(id, 1);
+           j = localStudents.indexOf(exchangestudent.scoreToLS[0].LS);
+          localStudents.splice(j, 1);
+
         }
       }
 
 
+
     }
+    this.createCSV(result);
 
 
-    var csvContent = "data:text/csv;charset=utf-8,";
+  }
+
+  createCSV(result: Map<LocalStudent, ExchangeStudent>) {
+    let ESLS: [{}] = [{}];
+
+
     result.forEach(
-        (ES, LS) => {
-          let
-            dataString = JSON.stringify(ES) + JSON.stringify(LS);
-          csvContent+=dataString+"\n";
-        }
-      );
+      (LS, ES) => {
+        let matchedStudents =
+          {
+            ESid: ES.id,
+            ESname: ES.name,
+            ESsurname: ES.surname,
+            ESmail: ES.emailAddress,
+            ESage: ES.age,
+            ESgender: ES.gender,
+            LSid: LS.id,
+            LSname: LS.name,
+            LSsurname: LS.surname,
+            LSmail: LS.emailAddress,
+            LSage: LS.age,
+            LSgender: LS.gender
+          };
+        ESLS.push(matchedStudents);
+      }
+    );
 
+    new Angular2Csv(ESLS, 'MatchedStudents', {
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalseparator: '.',
+      showLabels: true,
+      showTitle: true,
+      useBom: false,
+      title: "ExchangeID, ExchangeName,ExchangeSurname, ExchangeMail, ExchangeAge, ExchangeGender, LocalID, LocalName, LocalSurname, LocalMail, LocalAge, LocalGender",
+      filename: "MatchedStudents",
+      headers: ''
+    })
   }
 
   ngOnInit() {

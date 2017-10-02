@@ -4,12 +4,7 @@ import {LocalStudent} from "../local/local.model";
  * Created by Felix on 19.05.2017.
  */
 export interface ExchangeStudent extends Student{
-
-
-
-
-
-  hostUniversity: string;
+    hostUniversity: string;
   country: string;
 
   duration?: number;

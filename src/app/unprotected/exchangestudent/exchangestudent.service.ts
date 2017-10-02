@@ -4,7 +4,6 @@
 import {EventEmitter, Injectable} from "@angular/core";
 import {ExchangeStudent} from "./exchangestudent.model";
 import {Headers, Http} from "@angular/http";
-//import "rxjs/Rx";
 import "rxjs/add/operator/map";
 import {AngularFireDatabase} from "angularfire2/database";
 
@@ -68,6 +67,7 @@ export class ExchangestudentService {
       headers: headers
     });
   }
+
 
 
   fetchData() {

@@ -6,11 +6,8 @@ export interface Student {
   gender: string;
   emailAddress: string;
   studySubject: string;
-
   firstLanguage: string;
   secondLanguage: string;
-
-
   preferredGender: string;
   comments?: string;
 

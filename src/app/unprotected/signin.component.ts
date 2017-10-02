@@ -18,20 +18,33 @@ import {Router} from "@angular/router";
       </div>
       <button type="submit" [disabled]="!signinForm.valid" class="btn btn-primary">Sign In</button>
     </form>
+    
+   
+    <div *ngIf="isAuthenticated">Falsche Login Daten!</div>
   `,
   styles: []
 })
 export class SigninComponent implements OnInit {
+
   signinForm: FormGroup;
 
+  isAuthenticated:boolean;
   constructor(private fb: FormBuilder,
               private authService: AuthService, private router:Router) {
   }
   onSignin(){
     this.authService.signinUser(this.signinForm.value);
-    if(this.authService.isAuthenticated())
+    if(this.authService.isAuthenticated().first())
     {
+      console.log("Signin triggerd true");
       this.router.navigate(['admin']);
+      this.isAuthenticated= true;
+
+    }else
+    {
+
+      console.log("signing triggerd false");
+      this.isAuthenticated= false;
     }
 
 

@@ -121,8 +121,8 @@
 <div class="row">
   <md-toolbar class="mat-toolbar">Request a Buddy</md-toolbar>
 </div>
-
-<form [formGroup]="buddyForm" novalidate (ngSubmit)="onSubmit()">
+<div class="row" style="width:50%; align:center;">
+<form style="" [formGroup]="buddyForm" novalidate (ngSubmit)="onSubmit()">
       <md-card class="mat-card">
         <md-card-header>
           <md-card-title>Personal information</md-card-title>
@@ -137,7 +137,6 @@
                        class="alert alert-danger">Please enter a name
               </md-hint>
             </md-input-container>
-&nbsp;&nbsp;
             <md-input-container class="md-block">
               <label>Last Name</label>
               <input mdInput class="form-control" formControlName="surname" required>
@@ -184,16 +183,12 @@
 
               <md-radio-button value="abstain"> Abstain</md-radio-button>
             </md-radio-group>
-
-
             <br/>
             <br/>
             <br/>
           </div>
         </md-card-content>
       </md-card>
-
-
       <md-card class="mat-card">
         <md-card-header>
           <md-card-title>Information on your studies
@@ -210,15 +205,15 @@
               </md-hint>
             </md-input-container>
             <br/><br/>
-            <md-radio-group formControlName="hostUniversity">
+            <md-radio-group class="form-check" formControlName="hostUniversity">
               <label>At which university are you going to study?</label><br/><br/>
-              <md-radio-button value="FH" checked="true"> Fachhochschule Dortmund (University of Applied
+              <md-radio-button class="form-check-input"  value="FH" checked="true"> Fachhochschule Dortmund (University of Applied
                 Sciences)
               </md-radio-button>
               <br>
-              <md-radio-button value="TU"> Technische Universität Dortmund (Technical University)</md-radio-button>
+              <md-radio-button class="form-check-input" value="TU"> Technische Universität Dortmund (Technical University)</md-radio-button>
               <br>
-              <md-radio-button value="none"> None of the above</md-radio-button>
+              <md-radio-button class="form-check-input" value="none"> None of the above</md-radio-button>
               <br>
             </md-radio-group>
 <br/>
@@ -230,8 +225,7 @@
                   class="alert alert-danger">Please select your primary language
                 </md-hint>
               </md-select>
-            &nbsp;&nbsp;
-
+            &nbsp;
             <md-select class="form-control" formControlName="secondLanguage" required>
               <label>Second language</label>
               <md-option *ngFor="let lang of languages" [value]="lang.code">{{lang.language}}</md-option>
@@ -248,8 +242,6 @@
 
       </md-card>
 
-
-
       <md-card>
         <md-card-header>
           <md-card-title>Other information
@@ -257,7 +249,6 @@
         </md-card-header>
         <md-card-content>
           <div class="from-group">
-
               <md-input-container>
                 <label>How many semesters are you planning to stay in Dortmund?</label>
                 <input mdInput class="form-control" formControlName="duration">
@@ -290,3 +281,4 @@
 
 
 </form>
+</div>
