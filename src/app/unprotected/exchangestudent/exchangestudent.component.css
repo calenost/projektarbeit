@@ -3,7 +3,10 @@
   width:100%;
   margin:20px;
   }
-
+.mat-radio-label {
+                       white-space: initial;
+                       align-items: flex-start;
+                     }
   .div-left {
     float:left;
   }

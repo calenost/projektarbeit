@@ -104,48 +104,46 @@ export class AdminComponent implements OnInit {
         i = exchangeStudents.indexOf(exchangestudent);
         exchangestudent.scoreToLS = [{score: null, LS: null}];
 
-          exchangestudent.scoreToLS.splice(0, 1);
+        exchangestudent.scoreToLS.splice(0, 1);
         //debugger;
-        if(localStudents.length>0)
-        {
+        if (localStudents.length > 0) {
 
-        for (let localstudent of localStudents) {
-          j = localstudent.id;
-          score = 0;
-          if (localstudent.studySubject == exchangestudent.studySubject) {
-            score++;
+          for (let localstudent of localStudents) {
+            j = localstudent.id;
+            score = 0;
+            if (localstudent.studySubject == exchangestudent.studySubject) {
+              score++;
+            }
+            if (localstudent.preferredGender == exchangestudent.gender) {
+              score++;
+            }
+            if (exchangestudent.preferredGender == localstudent.gender) {
+              score++;
+            }
+            if (exchangestudent.firstLanguage == localstudent.firstLanguage || exchangestudent.firstLanguage == localstudent.secondLanguage || exchangestudent.firstLanguage == localstudent.thirdLanguage || exchangestudent.secondLanguage == localstudent.firstLanguage || exchangestudent.secondLanguage == localstudent.secondLanguage || exchangestudent.secondLanguage == localstudent.thirdLanguage) {
+              score++;
+            }
+            exchangestudent.scoreToLS.push({score: score, LS: localstudent});
           }
-          if (localstudent.preferredGender == exchangestudent.gender) {
-            score++;
-          }
-          if (exchangestudent.preferredGender == localstudent.gender) {
-            score++;
-          }
-          if (exchangestudent.firstLanguage == localstudent.firstLanguage || exchangestudent.firstLanguage == localstudent.secondLanguage || exchangestudent.firstLanguage == localstudent.thirdLanguage || exchangestudent.secondLanguage == localstudent.firstLanguage || exchangestudent.secondLanguage == localstudent.secondLanguage || exchangestudent.secondLanguage == localstudent.thirdLanguage) {
-            score++;
-          }
-          exchangestudent.scoreToLS.push({score: score, LS: localstudent});
-        }
 
-        exchangestudent.scoreToLS = exchangestudent.scoreToLS.sort((localScoreOne, localScoreTwo) => {
-          if (localScoreOne.score > localScoreTwo.score) {
-            return -1
-          }
-          if (localScoreOne.score < localScoreTwo.score) {
-            return 1
-          }
-          return 0
-        })
+          exchangestudent.scoreToLS = exchangestudent.scoreToLS.sort((localScoreOne, localScoreTwo) => {
+            if (localScoreOne.score > localScoreTwo.score) {
+              return -1
+            }
+            if (localScoreOne.score < localScoreTwo.score) {
+              return 1
+            }
+            return 0
+          })
         }
 
         if (exchangestudent.scoreToLS[0]) {
           result.set(exchangestudent.scoreToLS[0].LS, exchangestudent);
-           j = localStudents.indexOf(exchangestudent.scoreToLS[0].LS);
+          j = localStudents.indexOf(exchangestudent.scoreToLS[0].LS);
           localStudents.splice(j, 1);
 
         }
       }
-
 
 
     }
@@ -190,6 +188,96 @@ export class AdminComponent implements OnInit {
       filename: "MatchedStudents",
       headers: ''
     })
+  }
+
+  matchGraphBA() {
+    let exchangeStudents: ExchangeStudent[];
+    let localStudents: LocalStudent[];
+    const result: Map<LocalStudent, ExchangeStudent> = new Map();
+
+    exchangeStudents = this.es.getExchangeStudents();
+    localStudents = this.ls.getLocalStudents();
+    let score: number;
+
+    let languageExp: number = 1;
+    let genderExp: number = 1;
+    let subjectExp: number = 1;
+    let ratingExp: number = 1;
+    let i = -1;
+    let j = -1;
+
+
+    for (let exchangestudent of exchangeStudents) {
+      if (exchangestudent.hostUniversity != 'FH') {
+        /*let id = exchangeStudents.indexOf(exchangestudent);
+        exchangeStudents.splice(id, 1);*/
+      } else {
+        i = exchangeStudents.indexOf(exchangestudent);
+        exchangestudent.scoreToLS = [{score: null, LS: null}];
+
+        exchangestudent.scoreToLS.splice(0, 1);
+        //debugger;
+        if (localStudents.length > 0) {
+
+          for (let localstudent of localStudents) {
+            j = localstudent.id;
+            score = 0;
+            if (localstudent.studySubject == exchangestudent.studySubject) {
+              score = score + 1 * subjectExp;
+            }
+            if (localstudent.preferredGender == exchangestudent.gender) {
+              score = score + 1 * genderExp;
+            }
+            if (exchangestudent.preferredGender == localstudent.gender) {
+              score = score + 1 * genderExp;
+            }
+            if (exchangestudent.firstLanguage == localstudent.firstLanguage) {
+              score = score + 1 * languageExp;
+            }
+            if (exchangestudent.firstLanguage == localstudent.secondLanguage) {
+              score = score + 1 * languageExp;
+            }
+
+            if (exchangestudent.firstLanguage == localstudent.thirdLanguage) {
+              score = score + 1 * languageExp;
+            }
+            if (exchangestudent.secondLanguage == localstudent.firstLanguage) {
+              score = score + 1 * languageExp;
+            }
+            if (exchangestudent.secondLanguage == localstudent.secondLanguage) {
+              score = score + 1 * languageExp;
+            }
+            if (exchangestudent.secondLanguage == localstudent.thirdLanguage) {
+              score = score + 1 * languageExp;
+            }
+
+            exchangestudent.scoreToLS.push({score: score, LS: localstudent});
+          }
+
+          exchangestudent.scoreToLS = exchangestudent.scoreToLS.sort((localScoreOne, localScoreTwo) => {
+            if (localScoreOne.score > localScoreTwo.score) {
+              return -1
+            }
+            if (localScoreOne.score < localScoreTwo.score) {
+              return 1
+            }
+            return 0
+          })
+        }
+
+        if (exchangestudent.scoreToLS[0]) {
+          result.set(exchangestudent.scoreToLS[0].LS, exchangestudent);
+          j = localStudents.indexOf(exchangestudent.scoreToLS[0].LS);
+          localStudents.splice(j, 1);
+
+        }
+      }
+
+
+    }
+    this.createCSV(result);
+
+
   }
 
   ngOnInit() {
